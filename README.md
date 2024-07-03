@@ -16,12 +16,11 @@ Image-Finder-Project/
 │   ├── models/
 │   │   └── model_files
 │   ├── utils/
-│   │   └── utility_scripts.py
+│   │   └── feature_extraction.py
+│   │   └── similarity_calculation.py
 │   └── requirements.txt
 ├── app/
-│   ├── static/
-│   │   └── css/
-│   │       └── styles.css
+│   ├── static
 │   ├── templates/
 │   │   └── index.html
 │   └── app.py
@@ -29,6 +28,10 @@ Image-Finder-Project/
 │   ├── train_save.py
 │   ├── retrieve_similar_images.py
 │   └── Image_Search.ipynb
+│   ├── output/
+│   │   └── model_files
+│   ├── images/
+│   │   └── downloaded_images
 └── README.md
 ```
 

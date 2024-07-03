@@ -1,0 +1,9 @@
+numpy==1.23.5
+matplotlib
+Pillow
+requests==2.31.0
+scikit-learn == 1.4.2
+joblib==1.4.2
+tensorflow==2.12.0
+
+

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImageFindr</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #fff;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            top: 0;
+            z-index: 1;
+            position: fixed;
+        }
+        header img {
+            margin-left: 20px;
+            height: 50px;
+        }
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+            margin-left: 10px;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 1100px; /* Increased max-width */
+            margin-top: 80px; /* Adjust margin for fixed header */
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Centering the container */
+            margin: auto; /* Centering the container horizontally */
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        form input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 600px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        form button {
+            padding: 10px 40px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            gap: 20px;
+        }
+        .image-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 48%;
+        }
+        .image-block h2 {
+            text-align: center;
+            width: 100%;
+        }
+        .image-block img {
+            width: 350px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .small-images {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            justify-content: center;
+        }
+        .small-images img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .small-images img.selected {
+            border: 2px solid #333;
+        }
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .btn-container button {
+            padding: 10px 80px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 40px;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            const url = document.getElementById('url').value;
+            const errorElement = document.getElementById('error-message');
+
+            // Basic URL validation
+            try {
+                new URL(url);
+            } catch (_) {
+                errorElement.textContent = 'Invalid URL';
+                errorElement.style.display = 'block';
+                return false;
+            }
+
+            // Check if URL is an image
+            const imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+            const urlExtension = url.split('.').pop().toLowerCase();
+            if (!imageExtensions.includes(urlExtension)) {
+                errorElement.textContent = 'URL does not point to a valid image';
+                errorElement.style.display = 'block';
+                return false;
+            }
+
+            errorElement.textContent = ''; // Clear error message
+            errorElement.style.display = 'none';
+            return true; // Allow form submission
+        }
+
+        function selectImage(event) {
+            const mainImage = document.getElementById('main-similar-image');
+            mainImage.src = event.target.src;
+
+            // Remove 'selected' class from all small images
+            const smallImages = document.querySelectorAll('.small-images img');
+            smallImages.forEach(img => img.classList.remove('selected'));
+
+            // Add 'selected' class to clicked image
+            event.target.classList.add('selected');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const smallImages = document.querySelectorAll('.small-images img');
+            smallImages.forEach(img => img.addEventListener('click', selectImage));
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='Logo.png') }}" alt="Logo">
+        <h1 style="font-size: medium;">ImageFindr</h1>
+    </header>
+    <div class="container">
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+        {% if input_image_url %}
+            <div class="image-container">
+                <div class="image-block">
+                    <h2>Input Image</h2>
+                    <img src="{{ input_image_url }}" alt="Input Image">
+                    <div class="btn-container">
+                        <button onclick="window.location.href='/'">Try another Image</button>
+                    </div>
+                </div>
+                {% if similar_images %}
+                    <div class="image-block">
+                        <h2>Similar Images</h2>
+                        <img id="main-similar-image" src="{{ similar_images[0] }}" alt="Similar Image 1">
+                        <div class="small-images">
+                            {% for img_url in similar_images %}
+                                <img src="{{ img_url }}" alt="Similar Image">
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% else %}
+                <form method="post" action="/" onsubmit="return validateForm()">
+                <h2 style="font-size: medium;">Enter the Image URL:</h2>
+                <input type="text" id="url" name="url" placeholder="https://placehold.co/600x400/000000/FFFFFF/jpg" required>
+                <button type="submit">Find Similar Images</button>
+            </form>       
+        {% endif %}
+    </div>
+</body>
+</html>
