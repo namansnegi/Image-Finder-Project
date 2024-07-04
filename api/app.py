@@ -16,15 +16,6 @@ import uvicorn
 import h5py
 import logging
 
-# Google Drive file IDs (replace with actual IDs)
-model_file_id = '1kIc8v0JUZOulf8g889k3aAFOBYJThq86'
-features_file_id = '1oS4xjJFgh7HCUdiByAqCqPGnmR5L-vJY'
-labels_file_id = '11b4egRBs3HlMVc15_FRNKnhc5OrMmE21'
-image_paths_file_id = '1wMiw7nwaMcksi2gSJyyo4KGYkYj_NMTz'
-image_urls_file_id = '1PXetHEkm1XwjWCpFTcjH2HUXp51L4JWm'
-pca_file_id = '1omkcIVUPndwFKQyqAj4QlURX8xGjkW8s'
-kmeans_file_id = '11YPpfe9mnQsszZypuqemZwkbPMMVvzDP'
-
 # File paths where the files will be saved
 model_path = 'models/fine_tuned_resnet_model.h5'
 features_path = 'models/features.npy'
@@ -33,21 +24,6 @@ image_paths_path = 'models/image_paths.npy'
 image_urls_path = 'models/image_urls.npy'
 pca_path = 'models/pca_model.joblib'
 kmeans_path = 'models/kmeans_model.joblib'
-
-# Function to download files from Google Drive
-def download_file(file_id, output_path):
-    url = f'https://drive.google.com/uc?id={file_id}'
-    gdown.download(url, output_path, quiet=False)
-
-# Download the necessary files
-download_file(model_file_id, model_path)
-download_file(features_file_id, features_path)
-download_file(labels_file_id, labels_path)
-download_file(image_paths_file_id, image_paths_path)
-download_file(image_urls_file_id, image_urls_path)
-download_file(pca_file_id, pca_path)
-download_file(kmeans_file_id, kmeans_path)
-
 
 model = load_model(model_path)
 pca = load(pca_path)
