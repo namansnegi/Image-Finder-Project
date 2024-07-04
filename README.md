@@ -56,18 +56,20 @@ ImageFinder/
 1. **Train and Save Model**:
    - Train and save the model:
      ```bash
-     python scripts/train_save.py
+     cd scripts
+     python train_save.py
      ```
      I have already executed this file and the models and the artefacts have been saved. Only run this file if you want to retrain the machine learning model
 
 2. **Retrieve Similar Images**:
    - Retrieve similar images based on an input image URL:
      ```bash
-     python scripts/retrieve_similar_images.py /path/to/model_data "https://example.com/path/to/input_image.jpg"
+     cd scripts
+     python retrieve_similar_images.py /path/to/model_data "https://example.com/path/to/input_image.jpg"
      ```
      In the current folder structure the command will be:
      ```bash
-     python scripts/retrieve_similar_images.py scripts/output "https://example.com/path/to/input_image.jpg"
+     python retrieve_similar_images.py output "https://example.com/path/to/input_image.jpg"
      ```
 
 3. **Run Jupyter Notebook**:
