@@ -90,7 +90,8 @@ ImageFinder/
 5. **Run Flask Front-End**:
    - Start the Flask application:
      ```bash
-     python app/app.py
+     cd app
+     python app.py
      ```
    - Access the front-end at `http://127.0.0.1:5000`. Make sure that the FastAPI server is running on `http://127.0.0.1:8000`
 
