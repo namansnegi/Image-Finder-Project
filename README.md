@@ -35,16 +35,18 @@ ImageFinder/
 
 ### Installation and Setup
 
-1. **Install Miniconda**:
+1. Git clone the repository or donlaod it. Open terminal or your code editor and go to the repository location on your laptop/computer
+
+2. **Install Miniconda**:
    - Download and install from [Miniconda download page](https://docs.conda.io/en/latest/miniconda.html).
 
-2. **Create and Activate a Conda Environment**:
+3. **Create and Activate a Conda Environment**:
    ```bash
    conda create -n imagefinder python=3.11
    conda activate imagefinder
    ```
 
-3. **Install Dependencies**:
+4. **Install Dependencies**:
    ```bash
    conda install numpy matplotlib pillow requests scipy joblib tensorflow scikit-learn
    pip install fastapi uvicorn jupyter flask
@@ -56,11 +58,16 @@ ImageFinder/
      ```bash
      python scripts/train_save.py
      ```
+     I have already executed this file and the models and the artefacts have been saved. Only run this file if you want to retrain the machine learning model
 
 2. **Retrieve Similar Images**:
    - Retrieve similar images based on an input image URL:
      ```bash
      python scripts/retrieve_similar_images.py /path/to/model_data "https://example.com/path/to/input_image.jpg"
+     ```
+     In the current folder structure the command will be:
+     ```bash
+     python scripts/retrieve_similar_images.py scripts/output "https://example.com/path/to/input_image.jpg"
      ```
 
 3. **Run Jupyter Notebook**:
@@ -82,10 +89,11 @@ ImageFinder/
      ```bash
      python app/app.py
      ```
-   - Access the front-end at `http://127.0.0.1:5000`.
+   - Access the front-end at `http://127.0.0.1:5000`. Make sure that the FastAPI server is running on `http://127.0.0.1:8000`
 
 ### Using Deployed Versions
 
+I have deployed the API and the APP on the cloud. You can access it and test using the following urls:  
 - **API**: Access the deployed API at `https://web-646-1deb7c86-0qdgf9mi.onporter.run/similar`.
 - **App**: Access the deployed app at `[provide-app-url]`.
 
