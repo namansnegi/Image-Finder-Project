@@ -82,7 +82,8 @@ ImageFinder/
 4. **Run FastAPI Application**:
    - Start the FastAPI server:
      ```bash
-     uvicorn api.app:app --reload
+     cd api
+     uvicorn app:app --reload
      ```
    - Access the API at `http://127.0.0.1:8000/docs`.
 
