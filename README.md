@@ -49,20 +49,6 @@ ImageFinder/
    conda install numpy matplotlib pillow requests scipy joblib tensorflow scikit-learn
    pip install fastapi uvicorn jupyter flask
    ```
-
-4. **Set up Git LFS**:
-   - Install Git LFS from [Git LFS installation page](https://git-lfs.github.com/).
-   - Initialize Git LFS in your repository:
-     ```bash
-     git lfs install
-     git lfs track "*.joblib" "*.h5"
-     ```
-   - Commit the changes:
-     ```bash
-     git add .gitattributes
-     git commit -m "Track joblib and h5 files with Git LFS"
-     ```
-
 ### Using the Components
 
 1. **Train and Save Model**:
