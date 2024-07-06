@@ -126,7 +126,7 @@ def extract_features(img_path, model, target_size=(224, 224)):
 # Parse arguments for CSV file
 parser = argparse.ArgumentParser()
 parser.add_argument("--csv_file", help="CSV file with image URLs")
-args = parser.parse_args(args=["--csv_file", "/Users/namansinghnegi/Downloads/images.csv"])
+args = parser.parse_args(args=["--csv_file", "./images.csv"])
 
 # Read image URLs from CSV file
 with open(args.csv_file, "r") as handle:
