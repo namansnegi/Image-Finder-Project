@@ -143,6 +143,13 @@ To fine-tune the ResNet50 model for finding similar images, I used an Autoencode
 3. **Training**: The autoencoder is trained to minimize the difference between the input and reconstructed images. This fine-tunes the ResNet50 encoder to produce optimal feature vectors.
 4. **Feature Extraction**: After training, the ResNet50 encoder is used to extract feature vectors from all images in the database and the query image.
 
+Another way to fine-tune the model is to use **Contrastive Learning** with a **Siamese Network**. Here’s how it works:
+
+- **Training with Image Pairs**: The network is trained on pairs of images. Some pairs are similar, and some are different.
+- **Learning Embeddings**: The network learns to place similar images close together and different images far apart in its feature space.
+
+Using this approach can give very accurate similarity results. However, this would need a carefully chosen set of image pairs for training and a more complex training process compared to autoencoders.
+
 ### Data Preprocessing and Augmentation
 Before training, preprocessing and augmenting the data is crucial. Here’s what I did:
 
@@ -219,6 +226,7 @@ I chose FastAPI for developing the API because it’s fast, easy to use, and eff
 
 
 ## Improvements
+In this project I have shown the basic steps that n
 
 
 ### Improving the Machine Learning Process
@@ -230,3 +238,6 @@ I chose FastAPI for developing the API because it’s fast, easy to use, and eff
 
 ### Data Improvements
 1. **Increase Dataset Size**: Gather more and diverse data to train and fine-tune the models. More data helps the model learn better features and improves overall performance.
+
+## Conclusion
+This project was completed to demonstrate the steps and logic involved in building a system for finding similar images. The approach includes selecting the appropriate models, using transfer learning, fine-tuning with autoencoders, and employing various data preprocessing and augmentation techniques. While this is not a perfect solution and requires further fine-tuning and improvements, it illustrates the methodology and thought process behind tackling such a problem. This project showcases how I would approach the challenge, from initial model selection to implementing similarity measures and optimization techniques.
