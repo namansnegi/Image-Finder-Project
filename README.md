@@ -33,9 +33,15 @@ ImageFinder/
 
 ## Usage Instructions
 
-### Installation and Setup
+### Using Deployed Versions
 
-1. Git clone the repository or donlaod it. Open terminal or your code editor and go to the repository location on your laptop/computer
+I have deployed the API and the APP on the cloud. You can access it and test using the following urls:  
+- **API**: Access the deployed API at `[ImageFinderAPI](https://web-646-1deb7c86-0qdgf9mi.onporter.run/docs)`.
+- **App**: Access the deployed app at `[ImageFinderAPP](https://web1-649-1deb7c86-f6459y89.onporter.run/)`.
+
+### Installation and Setup on localhost
+
+1. Git clone the repository or downlaod it. Open terminal or your code editor and go to the repository location on your laptop/computer
 
 2. **Install Miniconda**:
    - Download and install from [Miniconda download page](https://docs.conda.io/en/latest/miniconda.html).
@@ -54,15 +60,25 @@ ImageFinder/
 ### Using the Components
 
 1. **Train and Save Model**:
-   - Train and save the model:
+   Ruuning this file does the follwing main tasks:
+     - Downloads all the images from the images csv file
+     - Data preprcoessing and Machine learning model initialisation
+     - Model Training
+     - Saving all the model files and other artefacts
+     
+     I have already executed this file and the models and the artefacts have been saved. Only run this file if you want to retrain the machine learning model.
+   
      ```bash
      cd scripts
      python train_save.py
      ```
-     I have already executed this file and the models and the artefacts have been saved. Only run this file if you want to retrain the machine learning model
 
-2. **Retrieve Similar Images**:
-   - Retrieve similar images based on an input image URL:
+
+     
+     I have already executed this file and the models and the artefacts have been saved. Only run this file if you want to retrain the machine learning model.
+
+3. **Retrieve Similar Images**:
+   Running this file will use the saved model to retrieve similar images for the input image url 
      ```bash
      cd scripts
      python retrieve_similar_images.py /path/to/model_data "https://example.com/path/to/input_image.jpg"
@@ -71,15 +87,17 @@ ImageFinder/
      ```bash
      python retrieve_similar_images.py output "https://example.com/path/to/input_image.jpg"
      ```
+      
 
-3. **Run Jupyter Notebook**:
+4. **Run Jupyter Notebook**:
+   You can run the whole code interactively using Jupyter Notebook
    - Start Jupyter Notebook:
      ```bash
      jupyter notebook
      ```
    - Open `scripts/Image_Search.ipynb`.
 
-4. **Run FastAPI Application**:
+6. **Run FastAPI Application**:
    - Start the FastAPI server:
      ```bash
      cd api
@@ -87,7 +105,8 @@ ImageFinder/
      ```
    - Access the API at `http://127.0.0.1:8000/docs`.
 
-5. **Run Flask Front-End**:
+7. **Run Flask Front-End**:
+   I have created a simple front end to use the API 
    - Start the Flask application:
      ```bash
      cd app
@@ -95,11 +114,6 @@ ImageFinder/
      ```
    - Access the front-end at `http://127.0.0.1:5000`. Make sure that the FastAPI server is running on `http://127.0.0.1:8000`
 
-### Using Deployed Versions
-
-I have deployed the API and the APP on the cloud. You can access it and test using the following urls:  
-- **API**: Access the deployed API at `https://web-646-1deb7c86-0qdgf9mi.onporter.run/similar`.
-- **App**: Access the deployed app at `[provide-app-url]`.
 
 
 
