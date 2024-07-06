@@ -36,8 +36,8 @@ ImageFinder/
 ### Using Deployed Versions
 
 I have deployed the API and the APP on the cloud. You can access it and test using the following urls:  
-- **API**: Access the deployed API at [ImageFinderAPI](https://web-646-1deb7c86-0qdgf9mi.onporter.run/docs).
-- **App**: Access the deployed app at [ImageFinderAPP](https://web1-649-1deb7c86-f6459y89.onporter.run/).
+- **API**: Access the deployed API at [ImageFinderAPI](https://web-646-1deb7c86-0qdgf9mi.onporter.run/docs){:target="_blank"}.
+- **App**: Access the deployed app at [ImageFinderAPP](https://web1-649-1deb7c86-f6459y89.onporter.run/){:target="_blank"}.
 
 ### Installation and Setup on localhost
 
