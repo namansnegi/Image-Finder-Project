@@ -16,7 +16,7 @@ import uvicorn
 import h5py
 import logging
 
-# File paths where the files will be saved
+# Load models and data
 model_path = 'models/fine_tuned_resnet_model.h5'
 features_path = 'models/features.npy'
 labels_path = 'models/labels.npy'
@@ -38,7 +38,6 @@ image_urls = np.load(image_urls_path)
 app = FastAPI()
 auth = HTTPBearer()
 
-# Replace this with your actual API keys
 API_KEYS = {
     "NAMANNEGI30576": "user1",
     "EBISU123": "user2",

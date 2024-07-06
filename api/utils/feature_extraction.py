@@ -7,7 +7,7 @@ import requests
 from io import BytesIO
 
 def download_image_from_url(url, target_path):
-    """Download image from URL and save it to target path."""
+    """"Download and save images from url"""
     try:
         response = requests.get(url, stream=True)
         response.raise_for_status()
@@ -29,14 +29,15 @@ def extract_features(img_url, model, target_size=(224, 224)):
         if not img_path:
             print("Failed to download the input image.")
             return None
-        
+            
+        # Read and preprocess image
         img = tf.io.read_file(img_path)
         img = tf.image.decode_image(img, channels=3)
         img = tf.image.resize(img, target_size)
-        img = preprocess_input(img)  # Preprocess input to match ResNet50 expectations
+        img = preprocess_input(img) 
         
         # Expand dimensions to match model input
-        img = tf.expand_dims(img, axis=0)  # Shape: (1, height, width, channels)
+        img = tf.expand_dims(img, axis=0) 
         
         # Extract features using the model
         features = model.predict(img)

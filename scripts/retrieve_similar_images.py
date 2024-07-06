@@ -21,10 +21,10 @@ def extract_features(img_path, model, target_size=(224, 224)):
         img = tf.io.read_file(img_path)
         img = tf.image.decode_image(img, channels=3)
         img = tf.image.resize(img, target_size)
-        img = preprocess_input(img)  # Preprocess input to match ResNet50 expectations
+        img = preprocess_input(img) 
         
         # Expand dimensions to match model input
-        img = tf.expand_dims(img, axis=0)  # Shape: (1, height, width, channels)
+        img = tf.expand_dims(img, axis=0)  
         
         # Extract features using the model
         features = model.predict(img)
@@ -35,18 +35,7 @@ def extract_features(img_path, model, target_size=(224, 224)):
         return None
 
 def calculate_similarity(input_features, dataset_features, top_n=3, metric='cosine'):
-    """
-    Calculate the similarity between input features and dataset features, and return the top N similar items.
-    
-    Parameters:
-    - input_features: Feature vector of the input image.
-    - dataset_features: Feature matrix of the dataset images.
-    - top_n: Number of top similar items to return.
-    - metric: Similarity metric to use ('cosine' or 'euclidean').
-    
-    Returns:
-    - Indices of the top N similar items in the dataset.
-    """
+
     if len(input_features.shape) == 1:
         input_features = input_features.reshape(1, -1)
     
@@ -62,7 +51,7 @@ def calculate_similarity(input_features, dataset_features, top_n=3, metric='cosi
     return indices[1:top_n+1]
 
 def download_image_from_url(url, target_path):
-    """Download image from URL and save it to target path."""
+    """"Download and save images from url"""
     try:
         response = requests.get(url, stream=True)
         response.raise_for_status()
@@ -79,16 +68,17 @@ def download_image_from_url(url, target_path):
 
 def display_similar_images(input_image_url, image_paths,image_urls, features, labels, model, pca, kmeans, top_n=3, target_size=(224, 224), metric='cosine'):
 
-        # Download the input image from URL
+    # Download the input image from URL
     input_image_path = download_image_from_url(input_image_url, "input_image.jpg")
     
     if not input_image_path:
         print("Failed to download the input image.")
         return
-
+    
+    # Extract features from the input image
     input_features = extract_features(input_image_path, model)
     input_features= normalize(input_features.reshape(1, -1))
-    input_features = pca.transform(input_features)  # Encode input features
+    input_features = pca.transform(input_features)
     
     # Find the cluster of the input image
     cluster_label = kmeans.predict(input_features)[0]
