@@ -159,7 +159,8 @@ Before training, preprocessing and augmenting the data is crucial. Here’s what
     - **Random Flipping**
     - **Random Brightness Adjustment**
     - **Random Contrast Adjustment**
-These techniques increase the diversity of the training data, helping the model generalize better to new, unseen images.
+
+   These techniques increase the diversity of the training data, helping the model generalize better to new, unseen images.
 
 ### Principal Component Analysis (PCA)
 I used PCA to reduce the dimensionality of the feature vectors. PCA transforms the feature space into orthogonal components, ordered by the amount of variance they explain. This makes similarity calculations faster and more efficient without losing significant information.
@@ -226,15 +227,13 @@ I chose FastAPI for developing the API because it’s fast, easy to use, and eff
 
 
 ## Improvements
-In this project I have shown the basic steps that n
-
 
 ### Improving the Machine Learning Process
 1. **Try Different Models**: Test other pre-trained models like EfficientNet, VGG16, or InceptionV3. This helps find out which model works best for extracting features and improving accuracy.
 2. **Combine Multiple Models**: Use several models together to create an ensemble. This takes advantage of the strengths of each model, making the system more robust and accurate.
 
 ### Similarity Measure Enhancements
-1. **Combine Similarity Measures**: Use multiple similarity measures like cosine similarity and Euclidean distance together. This can be done using a voting mechanism to get more reliable and accurate results, reducing the weaknesses of any single measure.
+1. **Combine Similarity Measures**: Use multiple similarity measures like cosine similarity and Euclidean distance together. This can be done using a voting mechanism to get more reliable and accurate results.
 
 ### Data Improvements
 1. **Increase Dataset Size**: Gather more and diverse data to train and fine-tune the models. More data helps the model learn better features and improves overall performance.
