@@ -41,44 +41,41 @@ I have deployed the API and the APP on the cloud. You can access it and test usi
 
 ### Installation and Setup on localhost
 
-1. Git clone the repository or downlaod it. Open terminal or your code editor and go to the repository location on your laptop/computer
+1.  **Clone the Repository**: Git clone the repository or download it. Open a terminal or your code editor and navigate to the repository location on your machine.
 
-2. **Install Miniconda**:
-   - Download and install from [Miniconda download page](https://docs.conda.io/en/latest/miniconda.html).
+2. **Install Miniconda**: Download and install from [Miniconda download page](https://docs.conda.io/en/latest/miniconda.html).
 
 3. **Create and Activate a Conda Environment**:
+   
    ```bash
    conda create -n imagefinder python=3.11
    conda activate imagefinder
    ```
 
-4. **Install Dependencies**:
+5. **Install Dependencies**:
+   
    ```bash
    conda install numpy matplotlib pillow requests scipy joblib tensorflow scikit-learn
    pip install fastapi uvicorn jupyter flask
    ```
 ### Using the Components
 
-1. **Train and Save Model**:
-   Ruuning this file does the follwing main tasks:
+1. **Train and Save Model**: Ruuning this file does the follwing main tasks:
      - Downloads all the images from the images csv file
      - Data preprcoessing and Machine learning model initialisation
      - Model Training
      - Saving all the model files and other artefacts
-     
-     I have already executed this file and the models and the artefacts have been saved. Only run this file if you want to retrain the machine learning model.
-   
+        
      ```bash
      cd scripts
      python train_save.py
      ```
 
+   *Note: The models and artifacts are already saved. Run this script only if you want to retrain the machine learning model.*
 
-     
-     I have already executed this file and the models and the artefacts have been saved. Only run this file if you want to retrain the machine learning model.
 
-3. **Retrieve Similar Images**:
-   Running this file will use the saved model to retrieve similar images for the input image url 
+3. **Retrieve Similar Images**: Running this file will use the saved model to retrieve similar images for the input image url
+   
      ```bash
      cd scripts
      python retrieve_similar_images.py /path/to/model_data "https://example.com/path/to/input_image.jpg"
@@ -88,31 +85,28 @@ I have deployed the API and the APP on the cloud. You can access it and test usi
      python retrieve_similar_images.py output "https://example.com/path/to/input_image.jpg"
      ```
       
-
-4. **Run Jupyter Notebook**:
-   You can run the whole code interactively using Jupyter Notebook
-   - Start Jupyter Notebook:
+5. **Run Jupyter Notebook**: You can run the whole code interactively using Jupyter Notebook
+ 
      ```bash
      jupyter notebook
      ```
    - Open `scripts/Image_Search.ipynb`.
 
-6. **Run FastAPI Application**:
-   - Start the FastAPI server:
+6. **Run FastAPI Application**: Start the FastAPI server:
+   
      ```bash
      cd api
      uvicorn app:app --reload
      ```
-   - Access the API at `http://127.0.0.1:8000/docs`.
+   Access the API at `http://127.0.0.1:8000/docs`.
 
-7. **Run Flask Front-End**:
-   I have created a simple front end to use the API 
-   - Start the Flask application:
+8. **Run Flask Front-End**: I have created a simple front end to use the API. Start the Flask application:
+   
      ```bash
      cd app
      python app.py
      ```
-   - Access the front-end at `http://127.0.0.1:5000`. Make sure that the FastAPI server is running on `http://127.0.0.1:8000`
+   Access the front-end at `http://127.0.0.1:5000`. Make sure that the FastAPI server is running on `http://127.0.0.1:8000`
 
 
 
